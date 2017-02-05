@@ -17,7 +17,6 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import java.util.ArrayList;
 
 import static com.example.vraun.booksearch.R.id.button;
-import static com.example.vraun.booksearch.R.id.text_edit;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -99,11 +98,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //URL method.
-    
+
     private String Url() {
         String keyword = "";
-        if (!text_edit.getText().toString().equals("")) {
-            keyword = text_edit.getText().toString();
+        if (!editText.getText().toString().equals("")) {
+            keyword = editText.getText().toString();
             Toast.makeText(MainActivity.this, "Search in process ..", Toast.LENGTH_SHORT).show();
             return "https://www.googleapis.com/books/v1/volumes?" + "q=" + keyword;
         } else {
