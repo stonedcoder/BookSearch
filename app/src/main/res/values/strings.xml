@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">BookSearch</string>
+    <string name="keyword_here">Put your keywords here</string>
+</resources>
