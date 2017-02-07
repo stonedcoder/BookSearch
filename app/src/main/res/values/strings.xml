@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">BookSearch</string>
     <string name="keyword_here">Put your keywords here</string>
+    <string name="empty_list">List view is empty</string>
 </resources>

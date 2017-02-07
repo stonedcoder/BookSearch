@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Book> books;
     BookAdapter adapter;
     BookAsyncTask bookAsyncTask;
+    TextView textview ;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -44,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.list);
         books = new ArrayList<>();
         adapter = new BookAdapter(this, books);
+        textview = (TextView) findViewById(R.id.empty_list_view);
 
 
         //Setting on click listener to that button .
@@ -57,14 +60,14 @@ public class MainActivity extends AppCompatActivity {
                         public void Finish(ArrayList<String> title, ArrayList<String> author) {
                             clearList();
                             if (title.size() != 0) {
-
+                                textview.setVisibility(View.GONE);
                                 listView.setVisibility(View.VISIBLE);
                                 for (int i = 0; i < title.size(); i++) {
                                     add(title.get(i), author.get(i));
                                 }
                             } else {
                                 listView.setVisibility(View.GONE);
-
+                                textview.setVisibility(View.VISIBLE);
                             }
                             listView.setAdapter(adapter);
                         }
