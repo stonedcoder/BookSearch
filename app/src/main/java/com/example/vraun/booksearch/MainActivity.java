@@ -44,9 +44,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
-
         editText = (EditText) findViewById(R.id.text_edit);
         search = (Button) findViewById(button);
         listView = (ListView) findViewById(R.id.list);
@@ -65,7 +62,14 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void Finish(ArrayList<String> title, ArrayList<String> author) {
                             clearList();
-                            if (title.size() != 0) {
+                            // Get a reference to the ConnectivityManager to check state of network connectivity
+                            ConnectivityManager connMgr = (ConnectivityManager)
+                                    getSystemService(Context.CONNECTIVITY_SERVICE);
+
+                            // Get details on the currently active default data network
+                            NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+                            // If there is a network connection, fetch data
+                            if (networkInfo != null && networkInfo.isConnected()) {
                                 textview.setVisibility(View.GONE);
                                 listView.setVisibility(View.VISIBLE);
                                 for (int i = 0; i < title.size(); i++) {
@@ -84,19 +88,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
+
+
+
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
-
-
-        // Get a reference to the ConnectivityManager to check state of network connectivity
-        ConnectivityManager connMgr = (ConnectivityManager)
-                getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        // Get details on the currently active default data network
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-
-
     }
 
     /**
